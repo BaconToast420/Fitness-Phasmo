@@ -34,6 +34,8 @@ public class PlayerMove : MonoBehaviour
     public Tool Tool2Tool;
     public Tool Tool3Tool;
 
+    public int HandNumber;
+    public GameObject Hand;
 
 
     public Camera Camera; 
@@ -66,6 +68,75 @@ public class PlayerMove : MonoBehaviour
             Move(1);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            HandNumber = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            HandNumber = 2;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            HandNumber = 3;
+        }
+
+
+        if (HandNumber == 1)
+        {
+            if (Tool1Object != null)
+            {
+                Tool1Object.SetActive(true);
+            }
+
+            if (Tool2Object != null)
+            {
+                Tool2Object.SetActive(false);
+            }
+
+            if (Tool3Object != null)
+            {
+                Tool3Object.SetActive(false);
+            }
+        }
+
+        if (HandNumber == 2)
+        {
+            if (Tool1Object != null)
+            {
+                Tool1Object.SetActive(false);
+            }
+
+            if (Tool2Object != null)
+            {
+                Tool2Object.SetActive(true);
+            }
+
+            if (Tool3Object != null)
+            {
+                Tool3Object.SetActive(false);
+            }
+        }
+
+        if (HandNumber == 3)
+        {
+            if (Tool1Object != null)
+            {
+                Tool1Object.SetActive(false);
+            }
+
+            if (Tool2Object != null)
+            {
+                Tool2Object.SetActive(false);
+            }
+
+            if (Tool3Object != null)
+            {
+                Tool3Object.SetActive(true);
+            }
+        }
 
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -95,12 +166,52 @@ public class PlayerMove : MonoBehaviour
         // Perform the raycast
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ToolLayer))
         {
-            MiddleSceneImage.sprite = PickUpIcon;
+            if (Vector3.Distance(hit.transform.position, transform.position) < 7)
+            {
+                MiddleSceneImage.sprite = PickUpIcon;
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (Tool1Object == null)
+                    {
+                        Tool1Object = hit.transform.gameObject;
+                        Tool1Object.SetActive(false);
+                        Tool1Object.transform.parent = Hand.transform;
+                        Tool1Object.transform.position = Hand.transform.position;
+                        Tool1Object.transform.rotation = Hand.transform.rotation;
+                        Tool1Object.GetComponent<Rigidbody>().isKinematic = true;
+                        Tool1Object.GetComponent<BoxCollider>().enabled = false;
+                    }
+                    else if (Tool2Object == null)
+                    {
+                        Tool2Object = hit.transform.gameObject;
+                        Tool2Object.SetActive(false);
+                        Tool2Object.transform.parent = Hand.transform;
+                        Tool2Object.transform.position = Hand.transform.position;
+                        Tool2Object.transform.rotation = Hand.transform.rotation;
+                        Tool2Object.GetComponent<Rigidbody>().isKinematic = true;
+                        Tool2Object.GetComponent<BoxCollider>().enabled = false;
+                    }
+                    else
+                    {
+                        Tool3Object = hit.transform.gameObject;
+                        Tool3Object.SetActive(false);
+                        Tool3Object.transform.parent = Hand.transform;
+                        Tool3Object.transform.position = Hand.transform.position;
+                        Tool3Object.transform.rotation = Hand.transform.rotation;
+                        Tool3Object.GetComponent<Rigidbody>().isKinematic = true;
+                        Tool3Object.GetComponent<BoxCollider>().enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                MiddleSceneImage.sprite = DefultIcon;
+            }
         }
         else
         {
             MiddleSceneImage.sprite = DefultIcon;
-
         }
     }
 
