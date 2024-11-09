@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public enum ToolType { Flashlight, UVLight}
+public enum ToolType {None, Flashlight, UVLight}
 
 [System.Serializable]
 public class Tool
@@ -13,8 +13,6 @@ public class Tool
     public string Beskrivelse;
 
     public ToolType Type;
-
-    public GameObject GameObject;
 }
 
 public class PlayerMove : MonoBehaviour
@@ -24,6 +22,16 @@ public class PlayerMove : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float walkSpeed, runModifier, crouchModifier;
     Vector2 moveInput;
+
+    public GameObject FlashLight;
+
+    public GameObject Tool1Object;
+    public GameObject Tool2Object;
+    public GameObject Tool3Object;
+
+    public Tool Tool1Tool;
+    public Tool Tool2Tool;
+    public Tool Tool3Tool;
 
     void Start()
     {
@@ -45,6 +53,28 @@ public class PlayerMove : MonoBehaviour
         {
             cam.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             Move(1);
+        }
+
+
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (Tool1Tool.Type == ToolType.Flashlight || Tool2Tool.Type == ToolType.Flashlight || Tool3Tool.Type == ToolType.Flashlight)
+            {
+                if (FlashLight.active == true)
+                {
+                    FlashLight.SetActive(false);
+                }
+                else
+                {
+                    FlashLight.SetActive(true);
+                }
+            }
+        }
+
+        if (Tool1Tool.Type != ToolType.Flashlight && Tool2Tool.Type != ToolType.Flashlight && Tool3Tool.Type != ToolType.Flashlight)
+        {
+            FlashLight.SetActive(false);
         }
     }
 
