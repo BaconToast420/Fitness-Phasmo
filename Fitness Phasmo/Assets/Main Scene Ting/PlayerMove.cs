@@ -5,15 +5,10 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] GameObject cam;
-    
+
     Rigidbody rb;
-    [SerializeField] float walkSpeed;
-    Vector2 moveInput, lookInput;
-
-    [SerializeField] float minViewDistance = 25f;
-
-    public float mouseSensitivity = 100f;
-    float xRotation = 0f;
+    [SerializeField] float walkSpeed, runModifier, crouchModifier;
+    Vector2 moveInput;
 
     void Start()
     {
@@ -23,35 +18,29 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        Move();
-        UpdateLookAround();
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Move(runModifier);
+        }
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
+            cam.transform.position = transform.position + new Vector3(0, 0.1f, 0);
+            Move(crouchModifier);
+        }else
+        {
+            cam.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            Move(1);
+        }
     }
 
-    void UpdateLookAround()
+    void Move(float modifier)
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, minViewDistance);
-
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
-    }
-
-    void Move()
-    {
-        Vector3 playerVelocity = new Vector3(moveInput.x * walkSpeed, rb.linearVelocity.y, moveInput.y * walkSpeed);
+        Vector3 playerVelocity = new Vector3(moveInput.x * walkSpeed * modifier, rb.linearVelocity.y, moveInput.y * walkSpeed * modifier);
         rb.linearVelocity = transform.TransformDirection(playerVelocity);
     }
 
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-    }
-
-    void OnLook(InputValue value)
-    {
-        lookInput = value.Get<Vector2>();
     }
 }
