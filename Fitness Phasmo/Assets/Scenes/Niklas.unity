@@ -1133,6 +1133,7 @@ MonoBehaviour:
   runModifier: 2
   crouchModifier: 0.5
   FlashLight: {fileID: 466149307}
+  UVLight: {fileID: 0}
   Tool1Object: {fileID: 0}
   Tool2Object: {fileID: 0}
   Tool3Object: {fileID: 0}
@@ -1162,6 +1163,7 @@ MonoBehaviour:
   DefultIcon: {fileID: 21300000, guid: 9ee8991dbb5a4f04386ee3281a8f836b, type: 3}
   PickUpIcon: {fileID: 21300000, guid: 1cbbc180f380d2346be1f8a326629564, type: 3}
   LickIcon: {fileID: 21300000, guid: 315465ece6f7f2748a3cc47331a8d1da, type: 3}
+  ChalkPrefab: {fileID: 0}
   Sanity: 0
 --- !u!114 &1127257048
 MonoBehaviour:
