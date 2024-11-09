@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: aa49745d1a78edf43ba72d9f3eeb32ae
+guid: 3162f70f5acc96440a7327d88f318187
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ProteinMaster
-    second: {fileID: 2800000, guid: 0ec81ab60b30c954d98e356baf2ee016, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
