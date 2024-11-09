@@ -382,7 +382,6 @@ GameObject:
   - component: {fileID: 24964968}
   - component: {fileID: 24964974}
   - component: {fileID: 24964973}
-  - component: {fileID: 24964975}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -524,11 +523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 330585543}
-<<<<<<< Updated upstream
-  walkSpeed: 10
-  runModifier: 1.5
-  crouchModifier: 0.4
-=======
   AllToolsList:
   - Name: Flash Light
     Beskrivelse: Press F to turn on
@@ -553,7 +547,6 @@ MonoBehaviour:
     Beskrivelse: 
     Type: 0
     GameObject: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!114 &24964974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,28 +577,12 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
-<<<<<<< Updated upstream
---- !u!114 &24964975
-MonoBehaviour:
-=======
 --- !u!1 &35564858
 GameObject:
->>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 24964967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39767fd2c1a2404e9bdf7248e31f9af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 330585543}
-  minViewDistance: 90
-  mouseSensitivity: 150
-=======
   serializedVersion: 6
   m_Component:
   - component: {fileID: 35564859}
@@ -1572,7 +1549,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330330924}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
->>>>>>> Stashed changes
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,7 +4974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1466652579
 Transform:
   m_ObjectHideFlags: 0
@@ -5870,7 +5846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1720235629
 Transform:
   m_ObjectHideFlags: 0
