@@ -1,6 +1,21 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+
+public enum ToolType { Flashlight, UVLight}
+
+[System.Serializable]
+public class Tool
+{
+    public string Name;
+    public string Beskrivelse;
+
+    public ToolType Type;
+
+    public GameObject GameObject;
+}
 
 public class PlayerMove : MonoBehaviour
 {
