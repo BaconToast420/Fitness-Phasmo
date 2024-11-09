@@ -31,9 +31,9 @@ public class UI : MonoBehaviour
     {
         if (MirrorBombToggle.GetComponent<Toggle>().isOn)
         {
-            Color textColor = AllNaturalButton.color;
+            /*Color textColor = AllNaturalButton.color;
             textColor.a = isOn ? lowOpacity : highOpacity;
-            AllNaturalButton.color = textColor;
+            AllNaturalButton.color = textColor;*/
         }
     }
 
@@ -64,11 +64,11 @@ public class UI : MonoBehaviour
 
     void SetOpacity(bool isChecked)
     {
-        Color textColor = .color;
+        /*Color textColor = .color;
 
         textColor.a = isChecked ? lowOpacity : highOpacity;
 
-        t.color = textColor;
+        t.color = textColor;*/
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
