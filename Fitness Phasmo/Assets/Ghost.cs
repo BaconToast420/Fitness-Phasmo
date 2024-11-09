@@ -22,6 +22,14 @@ public class Ghost : MonoBehaviour
     public GameObject Room;
     public List<GameObject> Rooms;
 
+    public float GhostEventTimer;
+
+
+    public PlayerMove Player;
+    public bool HuntBegun;
+    public GameObject Model;
+    public float HuntTimer;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +41,18 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (HuntBegun == false)
+        {
+            if (HuntTimer > 60)
+            {
+                HuntBegun = true;
+
+                HuntTimer = 0;
+            }
+            else
+            {
+                HuntTimer += Time.deltaTime;
+            }
+        }
     }
 }

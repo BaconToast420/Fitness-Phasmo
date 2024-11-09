@@ -47,6 +47,9 @@ public class PlayerMove : MonoBehaviour
     public Sprite PickUpIcon;
     public Sprite LickIcon;
 
+
+    public float Sanity;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
