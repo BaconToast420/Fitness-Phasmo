@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public enum ToolType {None, Flashlight, UVLight}
@@ -32,6 +33,16 @@ public class PlayerMove : MonoBehaviour
     public Tool Tool1Tool;
     public Tool Tool2Tool;
     public Tool Tool3Tool;
+
+
+
+    public Camera Camera; 
+    public LayerMask ToolLayer;
+
+    public Image MiddleSceneImage;
+    public Sprite DefultIcon;
+    public Sprite PickUpIcon;
+    public Sprite LickIcon;
 
     void Start()
     {
@@ -75,6 +86,21 @@ public class PlayerMove : MonoBehaviour
         if (Tool1Tool.Type != ToolType.Flashlight && Tool2Tool.Type != ToolType.Flashlight && Tool3Tool.Type != ToolType.Flashlight)
         {
             FlashLight.SetActive(false);
+        }
+
+
+        // Create a ray from the center of the camera's view
+        Ray ray = Camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+
+        // Perform the raycast
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ToolLayer))
+        {
+            MiddleSceneImage.sprite = PickUpIcon;
+        }
+        else
+        {
+            MiddleSceneImage.sprite = DefultIcon;
+
         }
     }
 
