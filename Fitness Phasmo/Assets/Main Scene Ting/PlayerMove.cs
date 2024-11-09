@@ -33,6 +33,7 @@ public class PlayerMove : MonoBehaviour
     public Tool Tool1Tool;
     public Tool Tool2Tool;
     public Tool Tool3Tool;
+    public Tool EmptyTool;
 
     public int HandNumber;
     public GameObject Hand;
@@ -100,6 +101,18 @@ public class PlayerMove : MonoBehaviour
             {
                 Tool3Object.SetActive(false);
             }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Tool1Object.SetActive(true);
+                Tool1Object.transform.parent = null;
+                Tool1Object.GetComponent<Rigidbody>().isKinematic = false;
+                Tool1Object.GetComponent<BoxCollider>().enabled = true;
+
+                Tool1Tool = EmptyTool;
+
+                Tool1Object = null;
+            }
         }
 
         if (HandNumber == 2)
@@ -118,6 +131,18 @@ public class PlayerMove : MonoBehaviour
             {
                 Tool3Object.SetActive(false);
             }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Tool2Object.SetActive(true);
+                Tool2Object.transform.parent = null;
+                Tool2Object.GetComponent<Rigidbody>().isKinematic = false;
+                Tool2Object.GetComponent<BoxCollider>().enabled = true;
+
+                Tool2Tool = null;
+
+                Tool2Object = null;
+            }
         }
 
         if (HandNumber == 3)
@@ -135,6 +160,18 @@ public class PlayerMove : MonoBehaviour
             if (Tool3Object != null)
             {
                 Tool3Object.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Tool3Object.SetActive(true);
+                Tool3Object.transform.parent = null;
+                Tool3Object.GetComponent<Rigidbody>().isKinematic = false;
+                Tool3Object.GetComponent<BoxCollider>().enabled = true;
+
+                Tool3Tool = null;
+
+                Tool3Object = null;
             }
         }
 
@@ -181,6 +218,8 @@ public class PlayerMove : MonoBehaviour
                         Tool1Object.transform.rotation = Hand.transform.rotation;
                         Tool1Object.GetComponent<Rigidbody>().isKinematic = true;
                         Tool1Object.GetComponent<BoxCollider>().enabled = false;
+
+                        Tool1Tool = Tool1Object.GetComponent<ObjectPickUp>().Tool;
                     }
                     else if (Tool2Object == null)
                     {
@@ -191,6 +230,8 @@ public class PlayerMove : MonoBehaviour
                         Tool2Object.transform.rotation = Hand.transform.rotation;
                         Tool2Object.GetComponent<Rigidbody>().isKinematic = true;
                         Tool2Object.GetComponent<BoxCollider>().enabled = false;
+
+                        Tool2Tool = Tool2Object.GetComponent<ObjectPickUp>().Tool;
                     }
                     else
                     {
@@ -201,6 +242,8 @@ public class PlayerMove : MonoBehaviour
                         Tool3Object.transform.rotation = Hand.transform.rotation;
                         Tool3Object.GetComponent<Rigidbody>().isKinematic = true;
                         Tool3Object.GetComponent<BoxCollider>().enabled = false;
+
+                        Tool3Tool = Tool3Object.GetComponent<ObjectPickUp>().Tool;
                     }
                 }
             }
