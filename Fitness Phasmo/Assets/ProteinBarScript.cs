@@ -1,25 +1,32 @@
-using System;
+    using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class ProteinBarScript : MonoBehaviour
 {
-    
+    public Clues Clue;
+
     public GameObject EatenProteinBar;
     public GameObject WholeProteinBar;
-    public bool letsGo = false;
-    public bool evidence = false;
+
+    public Ghost Ghost;
+
+    public bool letsGo;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    
+
+    public void Start()
+    {
+        Ghost = FindAnyObjectByType<Ghost>();
+
+        EatenProteinBar.SetActive(false);
+        WholeProteinBar.SetActive(true);
+    }
 
     private void Update()
     {
-        if (letsGo == false && evidence == true)
-        {
-            StartCoroutine(GhostEatsProteinBar());
-        }
+       
     }
 
     IEnumerator GhostEatsProteinBar()
@@ -36,4 +43,14 @@ public class ProteinBarScript : MonoBehaviour
         letsGo = false;
     }
 
+    public void OnTriggerStay(Collider other)
+    {
+        if (letsGo == false && other.gameObject == Ghost.Room)
+        {
+            if (Ghost.GhosteType.Clue1 == Clue || Ghost.GhosteType.Clue2 == Clue || Ghost.GhosteType.Clue3 == Clue)
+            {
+                StartCoroutine(GhostEatsProteinBar());
+            }
+        }
+    }
 }

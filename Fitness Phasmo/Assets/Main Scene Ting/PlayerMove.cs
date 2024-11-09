@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
-public enum ToolType {None, Flashlight, UVLight}
+public enum ToolType {None, Flashlight, UVLight, Proteinebar, ChalkBack}
 
 [System.Serializable]
 public class Tool
@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     Vector2 moveInput;
 
     public GameObject FlashLight;
+    public GameObject UVLight;
 
     public GameObject Tool1Object;
     public GameObject Tool2Object;
@@ -46,6 +47,8 @@ public class PlayerMove : MonoBehaviour
     public Sprite DefultIcon;
     public Sprite PickUpIcon;
     public Sprite LickIcon;
+
+    public GameObject ChalkPrefab;
 
 
     public float Sanity;
@@ -127,6 +130,11 @@ public class PlayerMove : MonoBehaviour
 
                 Tool1Object = null;
             }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                CallTheTool(Tool1Tool);
+            }
         }
 
         if (HandNumber == 2)
@@ -153,9 +161,14 @@ public class PlayerMove : MonoBehaviour
                 Tool2Object.GetComponent<Rigidbody>().isKinematic = false;
                 Tool2Object.GetComponent<BoxCollider>().enabled = true;
 
-                Tool2Tool = null;
+                Tool2Tool = EmptyTool;
 
                 Tool2Object = null;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                CallTheTool(Tool2Tool);
             }
         }
 
@@ -183,12 +196,16 @@ public class PlayerMove : MonoBehaviour
                 Tool3Object.GetComponent<Rigidbody>().isKinematic = false;
                 Tool3Object.GetComponent<BoxCollider>().enabled = true;
 
-                Tool3Tool = null;
+                Tool3Tool = EmptyTool;
 
                 Tool3Object = null;
             }
-        }
 
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                CallTheTool(Tool3Tool);
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -281,5 +298,37 @@ public class PlayerMove : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+
+    public void CallTheTool(Tool Tool)
+    {
+        if (Tool.Type == ToolType.Flashlight)
+        {
+            if (FlashLight.active == true)
+            {
+                FlashLight.SetActive(false);
+            }
+            else
+            {
+                FlashLight.SetActive(true);
+            }
+        }
+
+        if (Tool.Type == ToolType.UVLight)
+        {
+            if (UVLight.active == true)
+            {
+                UVLight.SetActive(false);
+            }
+            else
+            {
+                UVLight.SetActive(true);
+            }
+        }
+
+        if (Tool.Type == ToolType.ChalkBack)
+        {
+            Instantiate(ChalkPrefab, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation);
+        }
     }
 }
