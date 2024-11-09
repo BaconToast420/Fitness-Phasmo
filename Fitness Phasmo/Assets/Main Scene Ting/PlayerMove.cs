@@ -54,10 +54,21 @@ public class PlayerMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        Sanity = 100;
     }
 
     void Update()
     {
+        if (Sanity > 0)
+        {
+            Sanity -= Time.deltaTime / 10;
+        }
+        else
+        {
+            Sanity = 0;
+        }
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Move(runModifier);
