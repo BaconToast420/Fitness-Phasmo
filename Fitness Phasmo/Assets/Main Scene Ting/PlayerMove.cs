@@ -61,6 +61,8 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject Jurney;
 
+    public AudioSource DropItemSound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -190,6 +192,8 @@ public class PlayerMove : MonoBehaviour
                 Tool1Tool = EmptyTool;
 
                 Tool1Object = null;
+
+                DropItemSound.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -234,6 +238,8 @@ public class PlayerMove : MonoBehaviour
                 Tool2Tool = EmptyTool;
 
                 Tool2Object = null;
+
+                DropItemSound.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -281,6 +287,8 @@ public class PlayerMove : MonoBehaviour
                 Tool3Tool = EmptyTool;
 
                 Tool3Object = null;
+
+                DropItemSound.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))

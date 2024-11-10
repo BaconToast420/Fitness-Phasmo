@@ -34,6 +34,8 @@ public class DumbellScript : MonoBehaviour
                 {
                     Vector3 forceVector = new Vector3(Random.Range(-800, 800), Random.Range(200, 800), Random.Range(-800, 800));
                     rb.AddForce(forceVector, ForceMode.Impulse);
+
+                    AudioSource.Play();
                 }
 
                 Timer = 0;
