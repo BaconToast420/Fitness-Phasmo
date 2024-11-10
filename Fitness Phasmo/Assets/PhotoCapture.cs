@@ -11,6 +11,7 @@ public class PhotoCapture : MonoBehaviour
     public float photoDisplayGoAwayTimer;
 
     [SerializeField] private GameObject Broski;
+    public Ghost Ghost;
     
     private Texture2D screenCapture;
     private RenderTexture renderTexture;
@@ -59,8 +60,15 @@ public class PhotoCapture : MonoBehaviour
         // Calculate the spawn position based on the player's position and rotation
         Vector3 spawnPosition = playerPlayer.transform.position + playerPlayer.transform.rotation * offset;
 
-        // Instantiate Broski at the calculated position behind the player
-        GameObject bro = Instantiate(Broski, spawnPosition, Quaternion.identity);
+        if (Ghost.GhosteType.Clue1 == Clues.Photobomb || Ghost.GhosteType.Clue2 == Clues.Photobomb || Ghost.GhosteType.Clue3 == Clues.Photobomb)
+        {
+            // Instantiate Broski at the calculated position behind the player
+            GameObject bro = Instantiate(Broski, spawnPosition, Quaternion.identity);
+
+            Debug.Log("Broski");
+
+            Destroy(bro, 0.02f);
+        }
 
         // Render the photo camera's view into the render texture
         photoCamera.Render();
@@ -80,7 +88,7 @@ public class PhotoCapture : MonoBehaviour
         photoDisplayGoAway = true;
 
         // Wait for destroy
-        Destroy(bro, 0.02f);
+        
         Debug.Log("Photo capture triggered!");
     }
 

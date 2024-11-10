@@ -468,7 +468,7 @@ public class PlayerMove : MonoBehaviour
 
                         Tool2Tool = Tool2Object.GetComponent<ObjectPickUp>().Tool;
                     }
-                    else
+                    else if (Tool3Object == null)
                     {
                         Tool3Object = hit.transform.gameObject;
                         Tool3Object.SetActive(false);
