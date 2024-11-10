@@ -370,6 +370,7 @@ Transform:
   - {fileID: 1964151642}
   - {fileID: 8272384552790627777}
   - {fileID: 4638267540215376621}
+  - {fileID: 64657923}
   m_Father: {fileID: 1651038209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24738621
@@ -626,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42082eaff755f314aac23b89cf29c1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gemmer: 0
   cam: {fileID: 330585543}
   walkSpeed: 5
   runModifier: 2
@@ -1135,6 +1137,73 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &64657922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64657923}
+  - component: {fileID: 64657925}
+  - component: {fileID: 64657924}
+  m_Layer: 0
+  m_Name: Gemme Sted
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &64657923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64657922}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 78.2, y: 7.5, z: -81.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 13732410}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &64657924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64657922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ed186f8facdde4da55bffa901063fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerMove: {fileID: 1520213485}
+--- !u!65 &64657925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64657922}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 40.78215, y: 20, z: 20}
+  m_Center: {x: -6.7650056, y: 0, z: 0}
 --- !u!1 &65054831
 GameObject:
   m_ObjectHideFlags: 0
@@ -21891,6 +21960,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3833769735109699813, guid: ea67bb9fa3383a2409d2e3bdb1f9d296, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254327555013197644, guid: ea67bb9fa3383a2409d2e3bdb1f9d296, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23092,6 +23169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42082eaff755f314aac23b89cf29c1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gemmer: 0
   cam: {fileID: 2016173277}
   walkSpeed: 5
   runModifier: 2
@@ -24953,9 +25031,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 12
-  m_Acceleration: 8
+  m_Acceleration: 34
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 240
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -24998,6 +25076,8 @@ MonoBehaviour:
   HuntBegun: 0
   Model: {fileID: 716544142}
   HuntTimer: 0
+  HuntWait: 0
+  StopHunting: 0
   Agent: {fileID: 0}
   GameOverScreen: {fileID: 728698925}
   SweatPrefab: {fileID: 4977072584029965578, guid: f1fa901e4e3ed5745ab16c44389bb092, type: 3}

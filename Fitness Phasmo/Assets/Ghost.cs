@@ -29,6 +29,8 @@ public class Ghost : MonoBehaviour
     public bool HuntBegun;
     public GameObject Model;
     public float HuntTimer;
+    public float HuntWait;
+    public float StopHunting;
 
     public NavMeshAgent Agent;
 
@@ -105,12 +107,40 @@ public class Ghost : MonoBehaviour
 
         if (HuntBegun == true)
         {
-            Model.SetActive(true);
-            Agent.destination = Player.gameObject.transform.position;
-
-            if (Vector3.Distance(Player.gameObject.transform.position, transform.position) < 1)
+            if (HuntWait > 10)
             {
-                GameOverScreen.SetActive(true);
+                Model.SetActive(true);
+
+                if (Player.Gemmer == false)
+                {
+                    Agent.destination = Player.gameObject.transform.position;
+                }
+                else
+                {
+                    Agent.destination = transform.position;
+                }
+
+                if (Vector3.Distance(Player.gameObject.transform.position, transform.position) < 3)
+                {
+                    GameOverScreen.SetActive(true);
+                }
+
+                if (StopHunting > 40)
+                {
+                    HuntBegun = false;
+                    HuntWait = 0;
+                    StopHunting = 0;
+
+                    Model.SetActive(false);
+                }
+                else
+                {
+                    StopHunting += Time.deltaTime;
+                }
+            }
+            else
+            {
+                HuntWait += Time.deltaTime;
             }
         }
     }

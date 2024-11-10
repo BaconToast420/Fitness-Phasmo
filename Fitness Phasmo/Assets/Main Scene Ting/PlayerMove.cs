@@ -18,6 +18,8 @@ public class Tool
 
 public class PlayerMove : MonoBehaviour
 {
+    public bool Gemmer;
+
     [SerializeField] GameObject cam;
 
     Rigidbody rb;
