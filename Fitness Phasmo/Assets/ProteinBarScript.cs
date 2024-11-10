@@ -16,6 +16,8 @@ public class ProteinBarScript : MonoBehaviour
 
     public float Timer;
 
+    public AudioSource AudioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public void Start()
@@ -37,6 +39,8 @@ public class ProteinBarScript : MonoBehaviour
                 {
                     EatenProteinBar.SetActive(true);
                     WholeProteinBar.SetActive(false);
+
+                    AudioSource.Play();
                 }
 
                 Timer = 0;

@@ -26,9 +26,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float walkSpeed, runModifier, crouchModifier;
     Vector2 moveInput;
     public AudioSource PlayerWalking;
+    public AudioSource PlayerRunning;
 
     public GameObject FlashLight;
     public GameObject UVLight;
+    public AudioSource FlashLightTurnOnSound;
+
     public List<GameObject> SweatStains;
 
     public GameObject Tool1Object;
@@ -45,6 +48,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject Phone;
 
+    public Ghost Ghost;
 
     public Camera Camera; 
     public LayerMask ToolLayer;
@@ -55,6 +59,7 @@ public class PlayerMove : MonoBehaviour
     public Sprite LickIcon;
 
     public GameObject ChalkPrefab;
+    public AudioSource ChalkSound;
 
 
     public float Sanity;
@@ -62,6 +67,10 @@ public class PlayerMove : MonoBehaviour
     public GameObject Jurney;
 
     public AudioSource DropItemSound;
+
+    public float ParabolicSoundTimer;
+    public AudioSource ParabolicSound;
+    public AudioSource ParabolicStaticSound;
 
     void Start()
     {
@@ -127,6 +136,8 @@ public class PlayerMove : MonoBehaviour
                     Tool1Object.GetComponent<ObjectPickUp>().Audio.Play();
                 }
             }
+
+            ParabolicStaticSound.Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -140,6 +151,8 @@ public class PlayerMove : MonoBehaviour
                     Tool2Object.GetComponent<ObjectPickUp>().Audio.Play();
                 }
             }
+
+            ParabolicStaticSound.Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -153,6 +166,8 @@ public class PlayerMove : MonoBehaviour
                     Tool3Object.GetComponent<ObjectPickUp>().Audio.Play();
                 }
             }
+
+            ParabolicStaticSound.Stop();
         }
 
 
@@ -169,6 +184,33 @@ public class PlayerMove : MonoBehaviour
                 else
                 {
                     Tool1Object.SetActive(true);
+                }
+
+
+                if (Tool1Tool.Type == ToolType.Parabolic)
+                {
+                    ParabolicStaticSound.Play();
+
+                    if (Ghost.GhosteType.Clue1 == Clues.Sus || Ghost.GhosteType.Clue2 == Clues.Sus || Ghost.GhosteType.Clue3 == Clues.Sus)
+                    {
+                        if (ParabolicSoundTimer > 10)
+                        {
+                            int _rr = Random.Range(1, 101);
+
+                            if (_rr > 50)
+                            {
+                                Tool1Object.transform.GetChild(1).gameObject.SetActive(true);
+                                ParabolicSound.Play();
+                                ParabolicStaticSound.Stop();
+                            }
+
+                            ParabolicSoundTimer = 0;
+                        }
+                        else
+                        {
+                            ParabolicSoundTimer += Time.deltaTime;
+                        }
+                    }
                 }
             }
 
@@ -194,6 +236,8 @@ public class PlayerMove : MonoBehaviour
                 Tool1Object = null;
 
                 DropItemSound.Play();
+
+                ParabolicStaticSound.Stop();
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -221,6 +265,32 @@ public class PlayerMove : MonoBehaviour
                 {
                     Tool2Object.SetActive(true);
                 }
+
+                if (Tool2Tool.Type == ToolType.Parabolic)
+                {
+                    ParabolicStaticSound.Play();
+
+                    if (Ghost.GhosteType.Clue1 == Clues.Sus || Ghost.GhosteType.Clue2 == Clues.Sus || Ghost.GhosteType.Clue3 == Clues.Sus)
+                    {
+                        if (ParabolicSoundTimer > 10)
+                        {
+                            int _rr = Random.Range(1, 101);
+
+                            if (_rr > 50)
+                            {
+                                Tool2Object.transform.GetChild(1).gameObject.SetActive(true);
+                                ParabolicSound.Play();
+                                ParabolicStaticSound.Stop();
+                            }
+
+                            ParabolicSoundTimer = 0;
+                        }
+                        else
+                        {
+                            ParabolicSoundTimer += Time.deltaTime;
+                        }
+                    }
+                }
             }
 
             if (Tool3Object != null)
@@ -240,6 +310,8 @@ public class PlayerMove : MonoBehaviour
                 Tool2Object = null;
 
                 DropItemSound.Play();
+
+                ParabolicStaticSound.Stop();
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -274,6 +346,32 @@ public class PlayerMove : MonoBehaviour
                     {
                         Tool3Object.SetActive(true);
                     }
+
+                    if (Tool3Tool.Type == ToolType.Parabolic)
+                    {
+                        ParabolicStaticSound.Play();
+
+                        if (Ghost.GhosteType.Clue1 == Clues.Sus || Ghost.GhosteType.Clue2 == Clues.Sus || Ghost.GhosteType.Clue3 == Clues.Sus)
+                        {
+                            if (ParabolicSoundTimer > 10)
+                            {
+                                int _rr = Random.Range(1, 101);
+
+                                if (_rr > 50)
+                                {
+                                    Tool3Object.transform.GetChild(1).gameObject.SetActive(true);
+                                    ParabolicSound.Play();
+                                    ParabolicStaticSound.Stop();
+                                }
+
+                                ParabolicSoundTimer = 0;
+                            }
+                            else
+                            {
+                                ParabolicSoundTimer += Time.deltaTime;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -289,6 +387,8 @@ public class PlayerMove : MonoBehaviour
                 Tool3Object = null;
 
                 DropItemSound.Play();
+
+                ParabolicStaticSound.Stop();
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -301,6 +401,8 @@ public class PlayerMove : MonoBehaviour
         {
             if (Tool1Tool.Type == ToolType.Flashlight || Tool2Tool.Type == ToolType.Flashlight || Tool3Tool.Type == ToolType.Flashlight)
             {
+                FlashLightTurnOnSound.Play();
+
                 if (FlashLight.active == true)
                 {
                     FlashLight.SetActive(false);
@@ -421,10 +523,12 @@ public class PlayerMove : MonoBehaviour
             if (FlashLight.active == true)
             {
                 FlashLight.SetActive(false);
+                FlashLightTurnOnSound.Play();
             }
             else
             {
                 FlashLight.SetActive(true);
+                FlashLightTurnOnSound.Play();
             }
         }
 
@@ -433,6 +537,7 @@ public class PlayerMove : MonoBehaviour
             if (UVLight.active == true)
             {
                 UVLight.SetActive(false);
+                FlashLightTurnOnSound.Play();
 
                 foreach (var item in SweatStains)
                 {
@@ -442,6 +547,7 @@ public class PlayerMove : MonoBehaviour
             else
             {
                 UVLight.SetActive(true);
+                FlashLightTurnOnSound.Play();
 
                 foreach (var item in SweatStains)
                 {
@@ -453,6 +559,8 @@ public class PlayerMove : MonoBehaviour
         if (Tool.Type == ToolType.ChalkBack)
         {
             Instantiate(ChalkPrefab, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation);
+
+            ChalkSound.Play();
         }
 
         if (Tool.Type == ToolType.Phone)
