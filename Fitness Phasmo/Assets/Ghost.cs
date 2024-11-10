@@ -18,7 +18,6 @@ public class GhostTypes
 public class Ghost : MonoBehaviour
 {
     public GhostTypes GhosteType;
-    public List<GhostTypes> GhostTypesList;
 
     public GameObject Room;
     public List<GameObject> Rooms;

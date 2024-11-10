@@ -7,8 +7,20 @@ public class PlayerLookAround : MonoBehaviour
     public float mouseSensitivity = 100f;
     float xRotation = 0f;
 
+    public PlayerMove Player;
+
+    public void Start()
+    {
+        Player = GetComponent<PlayerMove>();
+    }
+
     void Update()
     {
+        if (Player.Jurney.active == true)
+        {
+            return;
+        }
+
         UpdateLookAround();
     }
 

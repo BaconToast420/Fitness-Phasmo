@@ -56,6 +56,8 @@ public class PlayerMove : MonoBehaviour
 
     public float Sanity;
 
+    public GameObject Jurney;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,6 +68,26 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (Jurney.active == false)
+            {
+                Jurney.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Jurney.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+
+        if (Jurney.active == true)
+        {
+            return;
+        }
+            
+
         if (Sanity > 0)
         {
             Sanity -= Time.deltaTime / 10;
