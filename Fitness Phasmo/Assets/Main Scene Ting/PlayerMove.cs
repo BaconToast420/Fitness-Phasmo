@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
-public enum ToolType {None, Flashlight, UVLight, Proteinebar, ChalkBack}
+public enum ToolType {None, Flashlight, UVLight, Proteinebar, ChalkBack, Weight, Phone, Parabolic}
 
 [System.Serializable]
 public class Tool
@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject FlashLight;
     public GameObject UVLight;
+    public List<GameObject> SweatStains;
 
     public GameObject Tool1Object;
     public GameObject Tool2Object;
@@ -38,6 +39,8 @@ public class PlayerMove : MonoBehaviour
 
     public int HandNumber;
     public GameObject Hand;
+
+    public GameObject Phone;
 
 
     public Camera Camera; 
@@ -104,9 +107,18 @@ public class PlayerMove : MonoBehaviour
 
         if (HandNumber == 1)
         {
+            Phone.SetActive(false);
+
             if (Tool1Object != null)
             {
-                Tool1Object.SetActive(true);
+                if (Tool1Tool.Type == ToolType.Phone)
+                {
+                    Phone.SetActive(true);
+                }
+                else
+                {
+                    Tool1Object.SetActive(true);
+                }
             }
 
             if (Tool2Object != null)
@@ -139,6 +151,8 @@ public class PlayerMove : MonoBehaviour
 
         if (HandNumber == 2)
         {
+            Phone.SetActive(false);
+
             if (Tool1Object != null)
             {
                 Tool1Object.SetActive(false);
@@ -146,7 +160,14 @@ public class PlayerMove : MonoBehaviour
 
             if (Tool2Object != null)
             {
-                Tool2Object.SetActive(true);
+                if (Tool2Tool.Type == ToolType.Phone)
+                {
+                    Phone.SetActive(true);
+                }
+                else
+                {
+                    Tool2Object.SetActive(true);
+                }
             }
 
             if (Tool3Object != null)
@@ -174,6 +195,8 @@ public class PlayerMove : MonoBehaviour
 
         if (HandNumber == 3)
         {
+            Phone.SetActive(false);
+
             if (Tool1Object != null)
             {
                 Tool1Object.SetActive(false);
@@ -186,7 +209,17 @@ public class PlayerMove : MonoBehaviour
 
             if (Tool3Object != null)
             {
-                Tool3Object.SetActive(true);
+                if (Tool3Object != null)
+                {
+                    if (Tool3Tool.Type == ToolType.Phone)
+                    {
+                        Phone.SetActive(true);
+                    }
+                    else
+                    {
+                        Tool3Object.SetActive(true);
+                    }
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.G))
@@ -225,6 +258,14 @@ public class PlayerMove : MonoBehaviour
         if (Tool1Tool.Type != ToolType.Flashlight && Tool2Tool.Type != ToolType.Flashlight && Tool3Tool.Type != ToolType.Flashlight)
         {
             FlashLight.SetActive(false);
+        }
+
+        if (Tool1Tool.Type != ToolType.UVLight && Tool2Tool.Type != ToolType.UVLight && Tool3Tool.Type != ToolType.UVLight)
+        {
+            foreach (var item in SweatStains)
+            {
+                item.SetActive(false);
+            }
         }
 
 
@@ -319,16 +360,31 @@ public class PlayerMove : MonoBehaviour
             if (UVLight.active == true)
             {
                 UVLight.SetActive(false);
+
+                foreach (var item in SweatStains)
+                {
+                    item.SetActive(false);
+                }
             }
             else
             {
                 UVLight.SetActive(true);
+
+                foreach (var item in SweatStains)
+                {
+                    item.SetActive(true);
+                }
             }
         }
 
         if (Tool.Type == ToolType.ChalkBack)
         {
             Instantiate(ChalkPrefab, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation);
+        }
+
+        if (Tool.Type == ToolType.Phone)
+        {
+            GetComponent<PhotoCapture>().Pressed();
         }
     }
 }

@@ -35,6 +35,8 @@ public class Ghost : MonoBehaviour
 
     public GameObject GameOverScreen;
 
+    public GameObject SweatPrefab;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,6 +54,37 @@ public class Ghost : MonoBehaviour
     {
         if (HuntBegun == false)
         {
+            if (GhostEventTimer > 45)
+            {
+                int _rr = Random.Range(0, 100);
+
+                if (_rr > 70)
+                {
+                    if (GhosteType.Clue1 == Clues.Sweat || GhosteType.Clue2 == Clues.Sweat || GhosteType.Clue3 == Clues.Sweat)
+                    {
+                       GameObject gm = Instantiate(SweatPrefab, new Vector3(Room.transform.position.x + (Random.Range(-5, 5)), 0, Room.transform.position.z + (Random.Range(-5, 5))), transform.rotation);
+
+                        Player.SweatStains.Add(gm);
+
+                        if (Player.UVLight.active == true)
+                        {
+                            gm.SetActive(true);
+                        }
+                        else
+                        {
+                            gm.SetActive(false);
+                        }
+                    }
+                }
+
+                GhostEventTimer = 0;
+            }
+            else
+            {
+                GhostEventTimer += Time.deltaTime;
+            }
+
+
             Model.SetActive(false);
 
             if (HuntTimer > 60)
