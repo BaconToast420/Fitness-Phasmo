@@ -26,10 +26,10 @@ public class LampScript : MonoBehaviour
         isFlickering = true;
         lampLight.SetActive(false);
         lightMat.DisableKeyword("_EMISSION");
-        timeDelay = Random.Range(0.3f, 1.5f);
+        timeDelay = Random.Range(0.2f, 1f);
         yield return new WaitForSeconds(timeDelay);
         lampLight.SetActive(true);
-        timeDelay = Random.Range(0.3f, 1.5f);
+        timeDelay = Random.Range(0.1f, 1f);
         lightMat.EnableKeyword("_EMISSION");
         yield return new WaitForSeconds(timeDelay);
         isFlickering = false;

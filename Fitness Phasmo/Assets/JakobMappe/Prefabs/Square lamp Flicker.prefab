@@ -46,7 +46,7 @@ Light:
   m_Color: {r: 0.9995, g: 1, b: 0.9264151, a: 1}
   m_Intensity: 20
   m_Range: 7.4
-  m_SpotAngle: 84.50226
+  m_SpotAngle: 145.49854
   m_InnerSpotAngle: 62.974125
   m_CookieSize: 10
   m_Shadows:
@@ -87,7 +87,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 12410
+  m_ColorTemperature: 7500
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -188,7 +188,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 33426571497e973419a34dbca3ea8ef5, type: 2}
-  - {fileID: 2100000, guid: b158a644d7820d24dbd584cd8350c47e, type: 2}
+  - {fileID: 2100000, guid: 203c2cd2a3974d048a68289de64fdb1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -223,4 +223,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lampLight: {fileID: 4630133107665909420}
-  lightMat: {fileID: 2100000, guid: b158a644d7820d24dbd584cd8350c47e, type: 2}
+  lightMat: {fileID: 2100000, guid: 203c2cd2a3974d048a68289de64fdb1c, type: 2}

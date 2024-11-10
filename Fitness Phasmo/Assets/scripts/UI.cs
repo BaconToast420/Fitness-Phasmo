@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI : MonoBehaviour
 {
@@ -29,11 +30,11 @@ public class UI : MonoBehaviour
 
     public void ToggleMirror()
     {
-        if (MirrorBombToggle.GetComponent<Toggle>().isOn)
+        if(MirrorBombToggle.GetComponent<Toggle>().isOn == true)
         {
-            /*Color textColor = AllNaturalButton.color;
-            textColor.a = isOn ? lowOpacity : highOpacity;
-            AllNaturalButton.color = textColor;*/
+            AllNaturalButton.GetComponent<TextMeshProUGUI>().color = Color.grey;
+            BeginnerButton.GetComponent<TextMeshProUGUI>().color = Color.grey;
+            OldManButton.GetComponent<TextMeshProUGUI>().color = Color.grey;
         }
     }
 
