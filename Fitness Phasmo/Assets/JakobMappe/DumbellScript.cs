@@ -15,6 +15,8 @@ public class DumbellScript : MonoBehaviour
 
     public float Timer;
 
+    public AudioSource AudioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
