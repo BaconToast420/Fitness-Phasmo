@@ -46,7 +46,7 @@ public class Ghost : MonoBehaviour
         Room = Rooms[Random.Range(0, Rooms.Count)];
         transform.position = Room.transform.position;
 
-        GhosteType = GhostTypesList[Random.Range(0, GhostTypesList.Count)];
+        
     }
 
     // Update is called once per frame

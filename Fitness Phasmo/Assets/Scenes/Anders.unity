@@ -7689,9 +7689,25 @@ MonoBehaviour:
     Clue3: 0
   GhostTypesList:
   - Name: Steroid Freak
-    Clue1: 4
+    Clue1: 0
     Clue2: 1
     Clue3: 5
+  - Name: Nattyboy
+    Clue1: 1
+    Clue2: 2
+    Clue3: 4
+  - Name: Beginner
+    Clue1: 3
+    Clue2: 4
+    Clue3: 5
+  - Name: Old Man
+    Clue1: 1
+    Clue2: 3
+    Clue3: 4
+  - Name: Influencer
+    Clue1: 0
+    Clue2: 2
+    Clue3: 3
   Room: {fileID: 0}
   Rooms:
   - {fileID: 991147640}
@@ -11011,6 +11027,7 @@ SceneRoots:
   - {fileID: 1019536725}
   - {fileID: 622934333}
   - {fileID: 352557539}
+  - {fileID: 409956185}
   - {fileID: 450127807}
   - {fileID: 1684054791}
   - {fileID: 199506267}
@@ -11019,4 +11036,3 @@ SceneRoots:
   - {fileID: 1112392559}
   - {fileID: 1490204709}
   - {fileID: 897508790}
-  - {fileID: 409956185}
