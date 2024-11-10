@@ -475,6 +475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photoDisplayArea: {fileID: 698363544}
+  photoDisplayGoAway: 0
+  photoDisplayGoAwayTimer: 0
   Broski: {fileID: 5774609252958483550, guid: 685b8487a9e4baf46a344e1e467e27ce, type: 3}
   playerPlayer: {fileID: 1431645201}
   photoCamera: {fileID: 2093649207}
@@ -1134,6 +1136,7 @@ MonoBehaviour:
   crouchModifier: 0.5
   FlashLight: {fileID: 466149307}
   UVLight: {fileID: 0}
+  SweatStains: []
   Tool1Object: {fileID: 0}
   Tool2Object: {fileID: 0}
   Tool3Object: {fileID: 0}
@@ -1155,6 +1158,7 @@ MonoBehaviour:
     Type: 0
   HandNumber: 1
   Hand: {fileID: 1545685292}
+  Phone: {fileID: 0}
   Camera: {fileID: 1202195244}
   ToolLayer:
     serializedVersion: 2
