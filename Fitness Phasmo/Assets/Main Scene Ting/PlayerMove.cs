@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float walkSpeed, runModifier, crouchModifier;
     Vector2 moveInput;
+    public AudioSource PlayerWalking;
 
     public GameObject FlashLight;
     public GameObject UVLight;
@@ -116,16 +117,40 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             HandNumber = 1;
+
+            if (Tool1Object != null)
+            {
+                if (Tool1Object.GetComponent<ObjectPickUp>().Audio != null)
+                {
+                    Tool1Object.GetComponent<ObjectPickUp>().Audio.Play();
+                }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             HandNumber = 2;
+
+            if (Tool2Object != null)
+            {
+                if (Tool2Object.GetComponent<ObjectPickUp>().Audio != null)
+                {
+                    Tool2Object.GetComponent<ObjectPickUp>().Audio.Play();
+                }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             HandNumber = 3;
+
+            if (Tool3Object != null)
+            {
+                if (Tool3Object.GetComponent<ObjectPickUp>().Audio != null)
+                {
+                    Tool3Object.GetComponent<ObjectPickUp>().Audio.Play();
+                }
+            }
         }
 
 
@@ -315,6 +340,8 @@ public class PlayerMove : MonoBehaviour
                         Tool1Object.GetComponent<Rigidbody>().isKinematic = true;
                         Tool1Object.GetComponent<BoxCollider>().enabled = false;
 
+                        
+
                         Tool1Tool = Tool1Object.GetComponent<ObjectPickUp>().Tool;
                     }
                     else if (Tool2Object == null)
@@ -327,6 +354,8 @@ public class PlayerMove : MonoBehaviour
                         Tool2Object.GetComponent<Rigidbody>().isKinematic = true;
                         Tool2Object.GetComponent<BoxCollider>().enabled = false;
 
+                        
+
                         Tool2Tool = Tool2Object.GetComponent<ObjectPickUp>().Tool;
                     }
                     else
@@ -338,6 +367,8 @@ public class PlayerMove : MonoBehaviour
                         Tool3Object.transform.rotation = Hand.transform.rotation;
                         Tool3Object.GetComponent<Rigidbody>().isKinematic = true;
                         Tool3Object.GetComponent<BoxCollider>().enabled = false;
+
+                        
 
                         Tool3Tool = Tool3Object.GetComponent<ObjectPickUp>().Tool;
                     }
@@ -363,6 +394,16 @@ public class PlayerMove : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+
+
+        if (moveInput.x != 0 || moveInput.y != 0)
+        {
+            PlayerWalking.Play();
+        }
+        else
+        {
+            PlayerWalking.Stop();
+        }
     }
 
     public void CallTheTool(Tool Tool)

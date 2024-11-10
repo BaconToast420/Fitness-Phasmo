@@ -38,6 +38,7 @@ public class Ghost : MonoBehaviour
 
     public GameObject SweatPrefab;
 
+    public List<AudioSource> Hount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -95,6 +96,11 @@ public class Ghost : MonoBehaviour
                 if (_rr > 20 + Player.Sanity)
                 {
                     HuntBegun = true;
+
+                    foreach (var item in Hount)
+                    {
+                        item.Play();
+                    }
                 }
 
                 HuntTimer = 0;
@@ -132,6 +138,11 @@ public class Ghost : MonoBehaviour
                     StopHunting = 0;
 
                     Model.SetActive(false);
+
+                    foreach (var item in Hount)
+                    {
+                        item.Stop();
+                    }
                 }
                 else
                 {

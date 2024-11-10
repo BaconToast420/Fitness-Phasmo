@@ -19,6 +19,9 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] GameObject playerPlayer;
     [SerializeField] private Camera photoCamera;
 
+
+    public AudioSource BilledTagningAudio;
+
     private void Start()
     {
         // Initialize a RenderTexture with the dimensions you want for the photo
@@ -46,6 +49,8 @@ public class PhotoCapture : MonoBehaviour
 
     public void Pressed()
     {
+        BilledTagningAudio.Play();
+
         photoDisplayGoAwayTimer = 2;
 
         // Define the offset position behind the player (adjust as needed)
